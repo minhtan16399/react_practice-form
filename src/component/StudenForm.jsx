@@ -17,9 +17,6 @@ export default class StudenForm extends Component {
         isSubmit: false
     }
 
-
-
-
     handleChangeInput = (e) => {
 
         let tag = e.target;
@@ -96,7 +93,7 @@ export default class StudenForm extends Component {
     }
     render() {
 
-        console.log(this.state);
+        // console.log(this.state);
 
         let { id, name, phone, email } = this.state.values;
         return (

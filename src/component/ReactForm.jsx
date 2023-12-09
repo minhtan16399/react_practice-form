@@ -10,14 +10,16 @@ export default class ReactForm extends Component {
             name: '',
             phone: '',
             email: '',
-        }
+        },
+        findStudent: []
     }
 
     addStudent = (newStudent) => {
         this.state.arrStudent.push(newStudent)
 
         this.setState({
-            arrStudent: this.state.arrStudent
+            arrStudent: this.state.arrStudent,
+            findStudent: this.state.arrStudent
         })
     }
 
@@ -52,11 +54,31 @@ export default class ReactForm extends Component {
         })
     }
 
+    findStudent = (studentName) => {
+        this.state.findStudent = this.state.arrStudent.filter(stud => {
+            return stud.name.toLowerCase().includes(studentName.toLowerCase());
+        })
+        this.setState({
+            findStudent: this.state.findStudent,
+            // arrStudent: this.state.findStudent,
+        })
+        console.log(this.state.findStudent);
+        console.log(this.state.arrStudent);
+    }
+
     render() {
         return (
             <div className='container'>
                 <h3 className="text-center my-3">Student management</h3>
                 <StudenForm updateStudent={this.updateStudent} studentEdit={this.state.studentEdit} addStudent={this.addStudent} />
+                <div className="container-fluid mt-5 w-50">
+                    <form className="d-flex " role="Find">
+                        <input className="form-control me-2" type="find" id="Find" placeholder="Find . . ." aria-label="Find" onChange={(e) => {
+                            let keySearch = e.target.value;
+                            this.findStudent(keySearch)
+                        }} />
+                    </form>
+                </div>
                 <table className='table mt-4'>
                     <thead>
                         <tr>
@@ -68,7 +90,7 @@ export default class ReactForm extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.arrStudent.map((student) => {
+                        {this.state.findStudent.map((student) => {
                             return <tr key={student.id}>
                                 <td>{student.id}</td>
                                 <td>{student.name}</td>
