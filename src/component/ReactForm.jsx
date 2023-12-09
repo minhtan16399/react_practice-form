@@ -41,10 +41,10 @@ export default class ReactForm extends Component {
 
     deleteStudent = (studentID) => {
 
-        this.state.arrStudent = this.state.arrStudent.filter(prod => prod.id !== studentID)
+        this.state.findStudent = this.state.arrStudent.filter(prod => prod.id !== studentID)
 
         this.setState({
-            arrStudent: this.state.arrStudent
+            arrStudent: this.state.findStudent
         })
     }
 
